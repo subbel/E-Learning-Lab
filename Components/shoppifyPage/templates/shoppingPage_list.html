@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+<div class="app-shoppingpage module">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shopping_item in shopping_items %}
+      <tr>
+        <td>{{ shopping_item.name }}</td>
+        <td>{{ shopping_item.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
