@@ -1,3 +1,44 @@
+<<<<<<< HEAD
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block page_content %}
+
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card shadow">
+          {% if user.profile.profile_image %}
+          <img
+            class="card-img-top"
+            src="{{ user.profile.profile_image.url }}"
+            alt="Card image cap"
+          />
+          {% else %}
+          <img
+            class="card-img-top"
+            src="/static/default_image.jpg"
+            alt="Card image cap"
+          />
+          {% endif %}
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="mt-3">
+                <h4>{{ user.username }}</h4>
+                <script>
+                  var username = "{{ user.username }}";
+                  function saveUserName() {
+                    return username;
+                  }
+                </script>
+                <p class="text-secondary mb-1">
+                  {{ user.profile.get_role_display }}
+                </p>
+                <p class="text-muted font-size-sm">{{ user.profile.bio }}</p>
+                <!--Make a bio section for profile-->
+              </div>
+            </div>
+          </div>
+        </div>
+=======
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
@@ -25,8 +66,9 @@
                         </div>
                     </div>
                 </div>
+>>>>>>> d55648447e401ec48a5b100eca7bd1deda336fc6
 
-                <!-- <div class="card shadow mt-3">
+        <!-- <div class="card shadow mt-3">
                     <ul class="list-group list-group-flush">
                         <li
                             class="bg-light list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -73,6 +115,77 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+                </div> -->
+      </div>
+      <div class="col-md-8">
+        <div class="card shadow mb-3">
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="card-title mt-4 mb-0">
+              <h4>User Information</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">First Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.profile.first_name }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Last Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.profile.last_name }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Grade</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.profile.grade_level }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Password</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">******************</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.email }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Birthday</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.profile.birthdate }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Location</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.profile.location }}
+              </div>
+            </div>
+          </div>
+=======
                 </div>
 
 
@@ -214,10 +327,24 @@
                     <div class="content" style="color: #969696;">COMING SOON</div>
                 </div>
             </ul>
+>>>>>>> d55648447e401ec48a5b100eca7bd1deda336fc6
         </div>
+
+        <!-- Update Profile -->
+        <a
+          class="btn btn-sm btn-dark float-right"
+          href="{% url 'update_profile' %}"
+          >Update Profile</a
+        >
+      </div>
     </div>
+  </div>
 </div>
 
+<<<<<<< HEAD
+{% endblock %}
+=======
 </div>
 
 {% endblock %}
+>>>>>>> d55648447e401ec48a5b100eca7bd1deda336fc6

@@ -76,7 +76,7 @@ ROOT_URLCONF = 'virtuallearninglab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['virtuallearninglab/templates/', 'student/templates', 'zoom/templates', 'courses/templates', 'disscussion_board/templates', os.path.join(BASE_DIR, 'templates')],
+        'DIRS': ['virtuallearninglab/templates/', 'student/templates', 'zoom/templates', 'courses/templates', 'disscussion_board/templates', 'shoppifyPage/templates', os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -159,6 +159,10 @@ CKEDITOR_CONFIGS = {
         'width':1500,
     },
 }
+
+STRIPE_PUBLIC_KEY = 'pk_test_51NJkoBJaj77Db3vYUYmyYoMeNziW4TIpnFXPvmiXwbkt11dDNGnMhFcRTamWuu197BRJ4Es9NWA49sbeArKb52Tq00PgaWy757'
+STRIPE_SECRET_KEY = 'sk_test_51NJkoBJaj77Db3vYS0aHF3TXwEulbCMZfqFdln74lc7RRgepdbOFcgLvLB9EwG7oYnjBzAIX8w4NsdaiQziadZrM0008VltKPI'
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
