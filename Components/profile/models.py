@@ -19,8 +19,8 @@ class Profile(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     bio = models.TextField(max_length=250, blank=True, default="Hey, this is my bio...")
-    first_name = models.CharField(max_length=30, blank=False,default="")
-    last_name = models.CharField(max_length=30, blank=False, default="")
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False)
     grade_level = models.IntegerField(default=0)
     profile_image = models.ImageField(upload_to='profiles/', default='profiles/default_pfp.jpg')#, default='default_pfp.jpg'
 
@@ -30,9 +30,9 @@ class Profile(models.Model):
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
-     # returns the url to 'profile_detail.html' 
+     # returns the url to 'profile_detail.html'
     def get_absolute_url(self):
-        return reverse("profile_detail")  
+        return reverse("profile_detail")
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
@@ -44,4 +44,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         instance.profile.role = 1
 
     instance.profile.save()
-

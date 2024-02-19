@@ -5,13 +5,13 @@ from django.core.exceptions import ValidationError
 
 
 class CustomUserCreationForm(forms.Form):
-    firstname = forms.CharField(label='', min_length=4, max_length=20, widget=forms.TextInput(attrs={'class': "input-box fname" , 'value': 'Firstname'}))
-    lastname = forms.CharField(label='', min_length=4, max_length=20, widget=forms.TextInput(attrs={'class': "input-box lname" , 'value': 'Lastname'}))
-    gradelevel = forms.IntegerField(label="", widget=forms.TextInput(attrs={'class': "input-box grade"}))
-    username = forms.CharField(label='', min_length=4, max_length=150, widget=forms.TextInput(attrs={'class': "input-box uname", 'value': 'Username'}))
-    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': "input-box email", 'value': 'Email'}))
-    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': "input-box p1", 'value': 'Password1'}))
-    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': "input-box p2", 'value': 'Password2'}))
+    first_name = forms.CharField(label='', min_length=4, max_length=20, widget=forms.TextInput(attrs={'class': "fname", "placeholder":"Firstname" }))
+    last_name = forms.CharField(label='', min_length=4, max_length=20, widget=forms.TextInput(attrs={'class': "lname", "placeholder":"Lastname"}))
+    # gradelevel = forms.IntegerField(label="", widget=forms.TextInput(attrs={'class': "input-box grade"}))
+    username = forms.CharField(label='', min_length=4, max_length=150, widget=forms.TextInput(attrs={'class': "uname", "placeholder":"Username"}))
+    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': "email", "placeholder":"Email"}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': "p1", "placeholder":"Enter Password"}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': "p2", "placeholder":"Re-Enter Password"}))
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -21,14 +21,14 @@ class CustomUserCreationForm(forms.Form):
         return username
 
     def clean_firstname(self):
-        firstname = self.cleaned_data['firstname']
+        first_name = self.cleaned_data['first_name']
 
-        return firstname
+        return first_name
 
     def clean_lastname(self):
-        lastname = self.cleaned_data['lastname']
+        last_name = self.cleaned_data['last_name']
 
-        return lastname
+        return last_name
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
@@ -48,11 +48,11 @@ class CustomUserCreationForm(forms.Form):
 
     def save(self, commit=True):
         user = User.objects.create_user(
-            self.cleaned_data['username'],
-            self.cleaned_data['email'],
-            self.cleaned_data['password1'],
-            firstname = self.cleaned_data['firstname'],
-            lastname = self.cleaned_data['lastname'],
-            gradelevel = self.cleaned_data['gradelevel'],
+        self.cleaned_data['username'],
+        first_name = self.cleaned_data['first_name'],
+        last_name = self.cleaned_data['last_name'],
+        email = self.cleaned_data['email'],
+        password = self.cleaned_data['password2'],
+            # grade_level = self.cleaned_data['gradelevel'],
         )
         return user
