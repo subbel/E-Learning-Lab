@@ -97,7 +97,7 @@
         {% else %}
         <li class="nav-item active"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
         {% endif %}
-        {% if user.is_authenticated %} 
+        {% if user.is_authenticated %}
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'shoppifyPage'%}">Shopping Page</a>
         </li>
@@ -120,7 +120,7 @@
 	<div id="London" class="tabcontent">
 			{% for course in courses_list %}
 			<div class="list-group-item d-flex flex-wrap">
-	
+
 				<h7 class="mr-auto">{{ course.name | truncatechars:20 }}</h7>
 				{% if course in enrolled_courses %}
 				<a class="mr-2 btn btn-danger btn-sm" href="{% url 'unenroll' course.id  %}">-</a>
@@ -143,8 +143,8 @@
         <p style="font-size: 300%; font-weight: bold; text-align: center;padding: 5%;">Coming Soon...</p>
       </div>
     </div>
-    {% for course, progress in course_progress %} 
-    <div style="border-top: 3px solid #C0C0C0 ;margin-bottom: 2px; padding-left: 2.5%;">   
+    {% for course, progress in course_progress %}
+    <div style="border-top: 3px solid #C0C0C0 ;margin-bottom: 2px; padding-left: 2.5%;">
 			<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 				<h7 style="color: black;" role="heading" aria-level="1">{{ course.name | truncatechars:30 }}</h7>
 				<div><a class="mr-2 btn btn-danger btn-sm" href="{% url 'unenroll' course.id  %}">-</a><span class="text-secondary"><a href="{% url 'welcome_page' course.id  %}">Visit</a></span></div>

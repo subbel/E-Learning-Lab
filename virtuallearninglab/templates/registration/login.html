@@ -2,47 +2,97 @@
 
 {% extends "base.html" %}
 {% block page_content %}
+<style>
+  .back{
+    background: radial-gradient(circle at 22.4% 21.7%, rgb(4, 189, 228) 0%, rgb(2, 83, 185) 100.2%);
+    width: 100vw;
+    height: 80vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .login-table{
+    background-color: white;
+    padding: 1rem;
+    box-shadow:5px 5px black ;
+    border: 2px rgb(69, 69, 69) solid ;
+  }
+  .bg-secondary{
+    background-color: white !important;
+    font-weight: 1000;
+    font-size: larger;
+    margin-bottom: -5% !important;
+  }
+  .login-btn{
+    background: radial-gradient(circle at 2% 21.7%, rgb(2, 83, 185) 0%, rgb(4, 189, 228) 100.2%);
+    margin-bottom: -10% !important;
+    margin-top: 5% !important;
+    transition: 0.3s !important;
+  }
+  .login-btn:hover{
+    background: radial-gradient(circle at 2% 21.7%, rgb(2, 83, 185) 0%, rgb(4, 189, 228) 100.2%);
+    text-shadow: 0 0 3px black, 0 0 5px black;
+  }
+  .lost-password{
+    font-weight: 1000;
+  }
+  .new-user{
+    font-weight: 1000;
+  }
+  .username-lbl{
+    font-weight: 1000;
+    margin-bottom: 5%;
+  }
 
-<div class="container">
-  <div class="row justify-content-center align-items-center" style="height:75vh;">
-      <div class="col-auto border p-3">
+  .psw-label{
+    font-weight: 1000;
+  }
+
+  form input{
+    background-color: white;
+    color: black;
+  }
+</style>
+<div class= "back">
+
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="height:75vh;">
+      <div class="login-table">
         {% if user.is_authenticated %}
         <meta http-equiv="refresh" content="0; url= {% url 'home' %} " />
         {% endif %}
 
-          {% if form.errors %}
-          <p class="bg-danger p-1">Incorrect Credentials</p>
-          <p class="p-1">Make sure your USERNAME and  <br> PASSWORD is typed in correctly</p>
-          {% endif %}
-            {% if next %}
-              {% if user.is_authenticated %}
-              <p class="bg-warning p-1">Your account doesn't have access.</p>
-              {% else %}
-              <p class="bg-secondary">E-Learning Lab Login</p>
-              {% endif %}
-          {% endif %}
+        {% if form.errors %}
+        <p class="bg-danger p-1">Incorrect Credentials</p>
+        <p class="p-1">Make sure your USERNAME and  <br> PASSWORD is typed in correctly</p>
+        {% endif %}
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p class="bg-warning p-1">Your account doesn't have access.</p>
+        {% else %}
+        <p class="bg-secondary">E-Learning Lab Login</p>
+        {% endif %}
+        {% endif %}
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <table>
-          <tr>
+            <tr class="username-lbl">
               <td>{{ form.username.label_tag }} </td>
               <td>{{ form.username }}</td>
-          </tr>
-          <tr>
+            </tr>
+            <tr class="psw-label">
               <td>{{ form.password.label_tag }} </td>
               <td>{{ form.password }}</td>
-          </tr>
+            </tr>
           </table>
           <br>
-          <input type="submit" value="login" />
+          <input class="login-btn" type="submit" value="Login" />
           <input type="hidden" name="next" value="{{ next }}" />
-          </form>
-          <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-          <p><a href="{% url 'register' %}">New User? Sign Up today!</a></p>
+        </form>
+        <p class="lost-password"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        <p class="new-user"><a href="{% url 'register' %}">New User? Sign Up today!</a></p>
       </div>
+    </div>
   </div>
 </div>
-{% endblock %}
-
-
-
+  {% endblock %}
