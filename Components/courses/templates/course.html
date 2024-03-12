@@ -15,8 +15,12 @@
     {
         text-overflow: ellipsis !important;
     }
-    
-</style>    
+
+    /* code for enroll and unenroll button  */
+    .rollbtn{
+        color: red;
+    }
+</style>
 <div class="col-md-8 offset-md-2" style="padding-bottom: 5rem; margin-left: 5.5%; margin-right: 3.5%;">
     {% for courses in courses %}
     <svg x="0%" style="width:135%; height:80%; padding-top: 50px">
@@ -30,11 +34,19 @@
             <foreignObject id = "course-des" x="50%" y="25%" width="45%" font-size="28px" height="40%" style="font-style: normal; font-weight: 500;  line-height: 34px;">
                 <body id = "course-des" style="color:#969696; font-style: normal; font-weight: 500;  line-height: 34px;">{{ courses.description }}</body>
             </foreignObject>
-            <rect x="66.25%" y="77.5%" rx="2.5%" ry="0%" style="height: 12%; width: 16% ;fill:rgb(131,209,214); border-collapse: separate;"></rect>
-            <text id = "course-link" x="69%" y="85.25%" font-size="24px"\ fill="#FFF" style="color:white"><a id = "course-link" href= "{% url 'welcome_page' courses.id %}" style="color:white;">View Course</a></text>
+            <rect x="72.25%" y="77.5%" rx="2.5%" ry="0%" style="height: 12%; width: 16% ;fill:rgb(131,209,214); border-collapse: separate;"></rect>
+            <text id = "course-link" x="75%" y="85.25%" font-size="24px" style="fill: black;"><a id = "course-link" href= "{% url 'welcome_page' courses.id %}" style="color:black; font-size: 1.692vw;">View Course</a></text>
+            {% if courses in enrolled_courses %}
+            <rect x="50.25%" y="77.5%" style="height: 12%; width: 16% ;fill:rgb(131,209,214); border-collapse: separate;"></rect>
+                <text x="54.25%" y="85%" style="font: bold 30px sans-serif;fill:black;" ><a style="color:black;font-size: 1.692vw;" class="rollbtn" href="{% url 'unenroll' courses.id  %}">Unenroll</a></text>
+            {% else %}
+            <rect x="50.25%" y="77.5%" style="height: 12%; width: 16% ;fill:rgb(131,209,214); border-collapse: separate;"></rect>
+            <text x="55.70%" y="85%" style="font: bold 30px sans-serif;fill:black;" ><a style="color:black;font-size: 1.692vw;" class="rollbtn" href="{% url 'enroll' courses.id  %}">Enroll</a></text>
+            {% endif %}
+
         </g>
         <g x="50%" style="width:50%">
-            
+
         </g>
     </svg>
     {% endfor %}

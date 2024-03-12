@@ -113,10 +113,10 @@
 <div class="container-fluid">
   {% if user.is_authenticated %}
 <div class="collapse" id="collapseExample">
-	<div class="tab">
+	<!-- <div class="tab">
 		<button class="tablinks" onclick="openCity(event, 'London')">All Courses</button>
 		<button class="tablinks" onclick="openCity(event, 'Paris')">Enrolled Courses</button>
-	</div>
+	</div> -->
 	<div id="London" class="tabcontent">
 			{% for course in courses_list %}
 			<div class="list-group-item d-flex flex-wrap">
@@ -128,36 +128,41 @@
 				<a class="mr-2 btn btn-success btn-sm" href="{% url 'enroll' course.id  %}">+</a>
 				{% endif %}
 				<span class="p-2 text-secondary">
-					<a href="{% url 'welcome_page' course.id  %}">Visit</a>
+					<a href="{% url 'welcome_page' course.id  %}">Visit </a>
 				</span>
 			</div>
 			{% endfor %}
 	</div>
 
-	<div id="Paris" class="tabcontent">
-    <div class="top-row-dashboard" style="display: grid; margin-bottom: 7%;margin-top: 2%; padding-right: 4%;padding-left: 4%;">
+	<div id="Paris" class="tabcontent" style="display: block;">
+    <div class="top-row-dashboard" style="display: grid; margin-bottom: 7%;margin-top: 2%; padding-right: 4%;padding-left: 4%; color: black;">
       <div class="welcome-row" style="margin-left: 2%; margin-top: 3%;  grid-row: 1;grid-column: 1;"><h1 style="font-size:250%;">Welcome back! , <br> {{ user.username }}</h1></div>
       <div class="time-box" style="border: 2px solid black; float: right; grid-row: 1;grid-column: 3;">
-        <!--<div><img src="/static/big-data.svg"><p>Learning Time: 20 min<br> This Week: 0 min</p></div>
-        <div><p>Longest Streak: 1 day</p></div>-->
-        <p style="font-size: 300%; font-weight: bold; text-align: center;padding: 5%;">Coming Soon...</p>
+        <!-- <div><img src="/static/big-data.svg"><p>Learning Time: 20 min<br> This Week: 0 min</p></div> -->
+        <div style="margin-left: 6%;margin-top: 6%;"><h4>You last logged in at: {{ user.last_login|date:"F d Y"}}</h4></div>
       </div>
     </div>
+    {% if enrolled_courses.count == 0 %}
+    <h1>You have not enrolled in any courses, please visit <a href="/courses">Courses</a> to enroll</h1>
+    {% else %}
+    <h1>Course List:</h1>
     {% for course, progress in course_progress %}
     <div style="border-top: 3px solid #C0C0C0 ;margin-bottom: 2px; padding-left: 2.5%;">
 			<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 				<h7 style="color: black;" role="heading" aria-level="1">{{ course.name | truncatechars:30 }}</h7>
 				<div><a class="mr-2 btn btn-danger btn-sm" href="{% url 'unenroll' course.id  %}">-</a><span class="text-secondary"><a href="{% url 'welcome_page' course.id  %}">Visit</a></span></div>
 			</li>
-			<div class="progress" style="height: 10px;">
+			<!-- <div class="progress" style="height: 10px;">
 				<div class="progress-bar" role="progressbar" id="{{ course.name }}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><h6 style="color:#007bff;">100%</h6></div>
           <script>
             document.getElementById("{{ course.name }}").style.width = "{{ progress }}%";
           </script>
-      </div>
-      <h7>Overall progress</h7><span style="color: black; margin-left: 23%;">{{ progress }}% completed</span>
+      </div> -->
+      <!-- <h7>Overall progress</h7><span style="color: black; margin-left: 23%;">{{ progress }}% completed</span> -->
       </div>
     {% endfor %}
+    <!-- <h1>Please visit <a href="/courses">Courses</a> to enroll in more courses</h1> -->
+    {%endif%}
 	</div>
 	<script>
 		function openCity(evt, cityName) {
