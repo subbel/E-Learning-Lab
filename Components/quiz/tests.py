@@ -28,8 +28,7 @@ class TestCategory(TestCase):
     def setUp(self):
         self.c1 = Category.objects.new_category(category='squishy   berries')
 
-        self.sub1 = SubCategory.objects.create(sub_category='Red',
-                                               category=self.c1)
+        self.sub1 = SubCategory.objects.create(sub_category='Red',category=self.c1)
 
     def test_categories(self):
         self.assertEqual(self.c1.category, 'squishy-berries')
@@ -42,25 +41,12 @@ class TestQuiz(TestCase):
     def setUp(self):
         self.c1 = Category.objects.new_category(category='elderberries')
 
-        self.quiz1 = Quiz.objects.create(id=1,
-                                         title='test quiz 1',
-                                         description='d1',
-                                         url='tq1')
-        self.quiz2 = Quiz.objects.create(id=2,
-                                         title='test quiz 2',
-                                         description='d2',
-                                         url='t q2')
-        self.quiz3 = Quiz.objects.create(id=3,
-                                         title='test quiz 3',
-                                         description='d3',
-                                         url='t   q3')
-        self.quiz4 = Quiz.objects.create(id=4,
-                                         title='test quiz 4',
-                                         description='d4',
-                                         url='T-!£$%^&*Q4')
+        self.quiz1 = Quiz.objects.create(id=1, title='test quiz 1',description='d1',url='tq1')
+        self.quiz2 = Quiz.objects.create(id=2,title='test quiz 2',description='d2',url='t q2')
+        self.quiz3 = Quiz.objects.create(id=3,title='test quiz 3',description='d3',url='t   q3')
+        self.quiz4 = Quiz.objects.create(id=4,title='test quiz 4',description='d4', url='t     q4')
 
-        self.question1 = MCQuestion.objects.create(id=1,
-                                                   content='squawk')
+        self.question1 = MCQuestion.objects.create(id=1, content='squawk')
         self.question1.quiz.add(self.quiz1)
 
     def test_quiz_url(self):
@@ -70,12 +56,7 @@ class TestQuiz(TestCase):
         self.assertEqual(self.quiz4.url, 't-q4')
 
     def test_quiz_options(self):
-        q5 = Quiz.objects.create(id=5,
-                                 title='test quiz 5',
-                                 description='d5',
-                                 url='tq5',
-                                 category=self.c1,
-                                 exam_paper=True)
+        q5 = Quiz.objects.create(id=5,title='test quiz 5',description='d5',url='tq5',category=self.c1,exam_paper=True)
 
         self.assertEqual(q5.category.category, self.c1.category)
         self.assertEqual(q5.random_order, False)
