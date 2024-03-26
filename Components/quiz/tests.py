@@ -56,7 +56,7 @@ class TestQuiz(TestCase):
         self.assertEqual(self.quiz4.url, 't-q4')
 
     def test_quiz_options(self):
-        q5 = Quiz.objects.create(id=5,title='test quiz 5',description='d5',url='tq5',category=self.c1,exam_paper=True)
+        q5 = Quiz.objects.create(id=5,title='test quiz 5',description='d5',url='tq5',category=self.c1,  exam_paper=True)
 
         self.assertEqual(q5.category.category, self.c1.category)
         self.assertEqual(q5.random_order, False)
