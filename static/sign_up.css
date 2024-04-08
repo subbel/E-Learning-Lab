@@ -1,7 +1,9 @@
 .container2{
     width: 100%;
     height:100%;
-    background: radial-gradient(circle at 22.4% 21.7%, rgb(4, 189, 228) 0%, rgb(2, 83, 185) 100.2%);
+    background-image: linear-gradient(to bottom right, rgba(144,69,243,255), rgba(96,197,244,255));
+    background-color:red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgba(146,68,244,255), rgba(96,197,244,255));
     background-position: relative;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,7 +11,8 @@
 
 .form-box-inner{
     position: absolute;
-    background: black;
+    background: rgba(235,235,235,255);
+    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
@@ -19,37 +22,21 @@
     padding: 20px;
 }
 
-form input{
+.input-box{
     border: none;
     border-bottom: 2px solid gray;
-    background-color: black;
+    background-color: #ebebeb;
     padding: 10px;
     outline: 0;
     color: gray;
 }
-
-tbody{display: grid;gap: 3%;}
-
-tbody tr:first-child td input{
-    width: 100%
+.input-box_fname{
+    background-color: red;
 }
-
-tbody tr:nth-child(2) td input{
-    width: 100%}
-
-tbody tr:nth-child(n+3) {
-    display:inline-grid ;
-    grid-column-start: 1;
-    grid-column-end: 3;}
-
-tbody tr:nth-child(n+3) td input {
-    width:100%;}
-form input::placeholder{
-    color: white;
-}
-
 .btn1 {
-    background:radial-gradient(circle at 22.4% 21.7%, rgb(2, 83, 185) 100.2%, rgb(4, 189, 228) 0%   );
+    margin-left: 50%;
+    margin-right: 50%;
+    background: linear-gradient(to bottom right, rgba(146,68,244,255), rgba(96,197,244,255));
     border: none;
     outline: none;
     border-radius: 30px;
@@ -70,8 +57,3 @@ form input::placeholder{
 .h1 ,h1{
     font-size: 1.5rem;
 }
-
-/*input::placeholder {
-    background-color: rgb(128, 128, 50);
-    content: 'hello';
-}*/
